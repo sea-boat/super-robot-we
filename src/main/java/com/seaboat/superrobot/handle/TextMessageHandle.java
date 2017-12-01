@@ -3,6 +3,8 @@ package com.seaboat.superrobot.handle;
 import org.springframework.stereotype.Service;
 
 import com.seaboat.superrobot.util.MessageUtil;
+import com.seaboat.superrobot.util.SuperRobot;
+import com.seaboat.superrobot.vo.TextMessage;
 
 import java.net.URLEncoder;
 import java.util.Map;
@@ -19,16 +21,14 @@ import java.util.Map;
 @Service
 public class TextMessageHandle implements WeChatMessageHandle {
 
-    @Override
-    public String processMessage(final Map<String, String> parameters)
-            throws Exception {
-        String fromUserName = parameters.get("FromUserName");
-        String toUserName = parameters.get("ToUserName");
-        String content = parameters.get("Content");
-        String info = URLEncoder.encode(content, "utf-8");
-        String result = "";
-        Object obj = MessageUtil.processTuRingResult(result, toUserName,
-                fromUserName);
-        return MessageUtil.ObjectToXml(obj);
-    }
+  @Override
+  public String processMessage(final Map<String, String> parameters) throws Exception {
+    SuperRobot robot = SuperRobot.getInstance();
+    String fromUserName = parameters.get("FromUserName");
+    String toUserName = parameters.get("ToUserName");
+    String content = parameters.get("Content");
+    String result = robot.response(content, "");
+    TextMessage text = new TextMessage(toUserName, fromUserName, result);
+    return MessageUtil.ObjectToXml(text);
+  }
 }

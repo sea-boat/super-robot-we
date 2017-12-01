@@ -30,7 +30,6 @@ public final class WeChatUtil {
       return false;
     }
     String[] arr = new String[] {Constants.TOKEN, timestamp, nonce};
-    // 将token、timestamp、nonce三个参数进行字典序排�?
     Arrays.sort(arr);
     StringBuilder content = new StringBuilder();
     for (String str : arr) {

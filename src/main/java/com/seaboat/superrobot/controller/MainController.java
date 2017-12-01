@@ -1,6 +1,7 @@
 package com.seaboat.superrobot.controller;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 import java.util.Map;
 
@@ -43,6 +44,19 @@ public class MainController {
   @RequestMapping("receiveMessage")
   public void receiveMessage(String signature, String timestamp, String nonce, String echostr,
       HttpServletRequest request, HttpServletResponse response) {
+    try {
+      request.setCharacterEncoding("UTF-8");
+    } catch (UnsupportedEncodingException e1) {
+      e1.printStackTrace();
+    }
+    response.setCharacterEncoding("UTF-8");
+    try {
+      Writer writer = response.getWriter();
+      writer.write("success");
+      writer.flush();
+    } catch (IOException e) {
+      LOGGER.error("Excetpion occurs when sending message to wechat", e);
+    }
     String fromUserName = null;
     String toUserName = null;
     try {
@@ -80,7 +94,7 @@ public class MainController {
   private void writeText(String content, HttpServletResponse response) {
     Writer writer = null;
     try {
-      response.setContentType("text/html");
+      response.setContentType("text/xml");
       response.setCharacterEncoding("UTF-8");
       writer = response.getWriter();
       writer.write(content);

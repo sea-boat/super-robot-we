@@ -3,6 +3,7 @@ package com.seaboat.superrobot.listener;
 import org.apache.log4j.Logger;
 
 import com.seaboat.superrobot.util.Constants;
+import com.seaboat.superrobot.util.SuperRobot;
 
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
@@ -34,7 +35,7 @@ public class InitListener implements ServletContextListener {
         Constants.APP_ID = properties.getProperty("appId");
         Constants.APP_SECRET = properties.getProperty("appSecret");
         Constants.TOKEN = properties.getProperty("token");
-
+        SuperRobot.getInstance();
     }
 
     public void contextDestroyed(ServletContextEvent sce) {
