@@ -11,10 +11,12 @@ package com.seaboat.superrobot.util;
  */
 public final class Constants {
 
+  public static String WORD2VEC_PPATH = "data/Google_word2vec_zhwiki1710_300d.bin";
+
   public static String APP_ID = null;
 
   public static String APP_SECRET = null;
-  
+
   public static String TOKEN = null;
 
   public static final String GET = "GET";

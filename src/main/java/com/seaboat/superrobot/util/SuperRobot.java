@@ -1,5 +1,7 @@
 package com.seaboat.superrobot.util;
 
+import java.util.List;
+
 import com.seaboat.robot.SuperEngine;
 
 /**
@@ -12,6 +14,7 @@ import com.seaboat.robot.SuperEngine;
  * <p>super robot.</p>
  */
 public class SuperRobot {
+
   private static SuperRobot instance;
   private SuperEngine engine;
 
@@ -27,6 +30,18 @@ public class SuperRobot {
       }
     }
     return instance;
+  }
+
+  public void setWord2vecPath(String word2vecPath) {
+    engine.setWord2vecPath(word2vecPath);
+  }
+
+  public void setQaFileList(List list) {
+    engine.setQaFileList(list);
+  }
+
+  public void initMatcher() {
+    engine.initMatcher();
   }
 
   public String createSession() {

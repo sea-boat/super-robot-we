@@ -8,7 +8,7 @@
 	<name>super-robot-we</name>
 
 	<properties>
-		<jdk.version>1.7</jdk.version>
+		<jdk.version>1.8</jdk.version>
 		<project.charset>UTF-8</project.charset>
 		<junit.version>4.12</junit.version>
 		<spring.version>4.3.13.RELEASE</spring.version>
